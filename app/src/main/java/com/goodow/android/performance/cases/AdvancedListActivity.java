@@ -29,7 +29,7 @@ public class AdvancedListActivity extends AppCompatActivity implements IWXRender
      * option 可以为空，或者通过option传入 js需要的参数。例如bundle js的地址等。
      * jsonInitData 可以为空。
      */
-    mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset("hello.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
+    mWXSDKInstance.render("图文列表", WXFileUtils.loadAsset("list-demo.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
 
   }
 
