@@ -24,14 +24,22 @@ public class AdvancedListActivity extends AppCompatActivity implements DefaultHa
     super.onCreate(savedInstanceState);
 
     mReactRootView = new ReactRootView(this);
+//    mReactInstanceManager = ReactInstanceManager.builder()
+//            .setApplication(getApplication())
+//            .setBundleAssetName("index.android.bundle")
+//            .setJSMainModulePath("index")
+//            .addPackage(new MainReactPackage())
+//            .setUseDeveloperSupport(BuildConfig.DEBUG)
+//            .setInitialLifecycleState(LifecycleState.RESUMED)
+//            .build();
     mReactInstanceManager = ReactInstanceManager.builder()
-        .setApplication(getApplication())
-        .setBundleAssetName("index.android.bundle")
-        .setJSMainModulePath("index")
-        .addPackage(new MainReactPackage())
-        .setUseDeveloperSupport(BuildConfig.DEBUG)
-        .setInitialLifecycleState(LifecycleState.RESUMED)
-        .build();
+            .setApplication(getApplication())
+            .setBundleAssetName("index.android.bundle")
+            .setJSMainModulePath("index")
+            .addPackage(new MainReactPackage())
+            .setUseDeveloperSupport(BuildConfig.DEBUG)
+            .setInitialLifecycleState(LifecycleState.RESUMED)
+            .build();
     mReactRootView.startReactApplication(mReactInstanceManager, "ReactNativePerformanceApp", null);
 
     setContentView(mReactRootView);
