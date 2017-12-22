@@ -16,6 +16,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
+
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 
@@ -51,6 +53,20 @@ public class ExampleInstrumentedTest {
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
     context.startActivity(intent);
 
+    // 启动录屏功能
+    new Thread(new Runnable() {
+      final UiDevice device = mDevice;
+      @Override
+      public void run() {
+        try {
+//          device.executeShellCommand("su");
+          String s = device.executeShellCommand("screenrecord --time-limit 30 /sdcard/screen_record.mp4");
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }).start();
+
     // Wait for the app to appear
     mDevice.wait(Until.hasObject(By.pkg(packageName).depth(0)), LAUNCH_TIMEOUT);
   }
@@ -59,7 +75,7 @@ public class ExampleInstrumentedTest {
   public void testListAdvanced() throws UiObjectNotFoundException {
     mDevice.findObject(new UiSelector().text("List (Advanced)")).click();
     UiScrollable scrollable = new UiScrollable(new UiSelector().scrollable(true));
-    scrollable.scrollToEnd(2);
+    scrollable.scrollToEnd(20);
   }
 
 }
